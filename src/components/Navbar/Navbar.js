@@ -15,7 +15,7 @@ const Title = styled.h1`
 
 export default props =>{
    return (
-      <Wrapper className="App">
+      <Wrapper>
          <Title>Dinter</Title>
       </Wrapper>
    )
