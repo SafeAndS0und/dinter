@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import {appContext} from "../../context/app/AppProvider"
+import {doASD} from "../../context/app/AppActions"
 
 
 const Wrapper = styled.nav`
@@ -44,6 +46,7 @@ const About = styled.p`
 `
 
 export default props =>{
+   const {state, dispatch} = useContext(appContext)
 
    return (
       <Wrapper>
@@ -53,8 +56,11 @@ export default props =>{
             Benjamin, 3
          </Name>
 
-         <Breed>
-            Bedlington Terrier
+         <Breed onClick={() => {
+            console.log('asd')
+            dispatch(doASD(2))
+         }}>
+            Bedlington Terrier, {state.number}
          </Breed>
 
          <About>

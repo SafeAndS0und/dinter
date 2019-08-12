@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.nav`
    display: block;
-   box-shadow: 0px 4px 5px 0px rgba(209,209,209,1);
+   box-shadow: 0 4px 5px 0 rgb(225,225,225);
    padding: 8px 0;
 `
 
