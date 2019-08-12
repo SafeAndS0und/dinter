@@ -2,44 +2,46 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const Wrapper = styled.nav`
+const Wrapper = styled.div`
    display: block;
    margin: 15px auto;
    max-width: 93%;
-   box-shadow: 0 4px 5px 0 rgba(209,209,209,1);
+   box-shadow: 0 3px 5px 0 rgb(190,190,190);
    padding: 15px;
    border-radius: 10px;
    max-height: 80vh;
 `
 
 const Image = styled.img`
-   min-width: 50%;
-   max-width: 90%;
-   max-height: 50vh;
+   min-width: 70%;
+   max-width: 95%;
+   max-height: 45vh;
    object-fit: cover;
    display: block;
-   margin: 0 auto 12px auto;
+   margin: 12px auto 16px auto;
    border-radius: 18px;
  
 `
 
 const Name = styled.h3`
   color: #202020;
-  font-size: 1.2em;
+  font-size: 1.35em;
   font-weight: 700;
   margin: 3px 0;
+  text-align: center;
 `
 
 const Breed = styled.small`
-  font-weight: 100;
+  display: block;
+  text-align: center;
+  font-weight: 500;
   color: #666666;
 `
 
 const About = styled.p`
-  font-weight: 100;
-  color: #494949;
+  font-weight: 300;
+  color: #2f2f2f;
   font-size: .9em;
-  text-align: center;
   margin: 15px 0 2px 0;
 `
 
@@ -47,7 +49,7 @@ export default ({dog}) =>{
 
    return (
       <Wrapper>
-         <Image src={dog.url}/>
+
          <Name>
             Benjamin, 3
          </Name>
@@ -55,18 +57,31 @@ export default ({dog}) =>{
          <Breed>
             {
                dog.breeds.length > 0
-               ? dog.breeds[0].name
-               : "I don't wanna talk about my breed..."
+                  ? dog.breeds[0].name
+                  : "Does my breed matter?"
             }
          </Breed>
+
+         <Image src={dog.url}/>
 
          <About>
             {
                dog.breeds.length > 0
-                  ? dog.breeds[0].temperament
+                  ?
+                  (
+                     <span>
+                        I live about {dog.breeds[0].life_span}.
+                        <br/>
+                        I'm mostly bred for {dog.breeds[0].bred_for.toLowerCase()}.
+                        <br/>
+                        <br/>
+                        I am {dog.breeds[0].temperament.toLowerCase()}.
+                     </span>
+                  )
                   : "I'm just awesome. Love me."
             }
          </About>
+
       </Wrapper>
    )
 }

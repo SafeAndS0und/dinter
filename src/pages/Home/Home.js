@@ -4,24 +4,32 @@ import Card from '../../components/Card/Card'
 import RoundBtn from '../../components/partials/RoundBtn/RoundBtn'
 import styled from 'styled-components'
 import {appContext} from "../../context/app/AppProvider"
+import {TiHeart, TiThumbsDown, TiThumbsUp} from 'react-icons/ti'
 
 const Page = styled.div`
-   max-width: 800px;
+   max-width: 600px;
    display: block;
-   margin: auto;
+   margin: 70px auto 0 auto;
+   
 `
 
 const BtnWrapper = styled.section`
+  max-width: 600px;
   position: fixed;
-  bottom: 25px;
-  left: 2.5%;
-  width: 95%;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   
   .middle {
     transform: translateY(-20px) scale(1.25);
+    
+    &:hover {
+      transform: translateY(-20px) scale(1.35);
+    }
   }
 `
 
@@ -35,9 +43,15 @@ export default () =>{
             state.loading || <Card dog={state.currentDog}/>
          }
          <BtnWrapper>
-            <RoundBtn bgColor="#FF79A8">A</RoundBtn>
-            <RoundBtn className="middle">B</RoundBtn>
-            <RoundBtn bgColor="#56FF83">C</RoundBtn>
+            <RoundBtn bgColor="#FF5962">
+               <TiThumbsDown/>
+            </RoundBtn>
+            <RoundBtn className="middle">
+               <TiHeart/>
+            </RoundBtn>
+            <RoundBtn bgColor="#42FF78">
+               <TiThumbsUp/>
+            </RoundBtn>
          </BtnWrapper>
       </Page>
    )
