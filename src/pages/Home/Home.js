@@ -1,11 +1,10 @@
 import React, {useContext} from 'react'
-import './App.css'
+import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Card from '../../components/Card/Card'
 import RoundBtn from '../../components/partials/RoundBtn/RoundBtn'
 import styled from 'styled-components'
-import {appContext} from '../../context/app/AppProvider'
-import AppProvider from '../../context/app/AppProvider'
+import {appContext} from "../../context/app/AppProvider"
 
 const Page = styled.div`
    max-width: 800px;
@@ -26,21 +25,18 @@ const BtnWrapper = styled.section`
 `
 
 export default () =>{
-
-
+   const {state, dispatch} = useContext(appContext)
 
    return (
       <Page className="App">
-         <AppProvider>
-            <Navbar/>
-            <Card/>
-
-            <BtnWrapper>
-               <RoundBtn bgColor="#FF79A8">A</RoundBtn>
-               <RoundBtn className="middle">B</RoundBtn>
-               <RoundBtn bgColor="#56FF83">C</RoundBtn>
-            </BtnWrapper>
-         </AppProvider>
+         <Navbar/>
+         <Card/>
+         {state.currentDog && state.currentDog.id}
+         <BtnWrapper>
+            <RoundBtn bgColor="#FF79A8">A</RoundBtn>
+            <RoundBtn className="middle">B</RoundBtn>
+            <RoundBtn bgColor="#56FF83">C</RoundBtn>
+         </BtnWrapper>
       </Page>
    )
 }
