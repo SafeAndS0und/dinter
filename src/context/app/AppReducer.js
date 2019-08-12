@@ -6,13 +6,15 @@ export default (state, action) =>{
       case FETCH_DOG_INIT :
          return {
             ...state,
-            options: action.payload.options
+            options: action.payload.options,
+            loading: true
          }
 
       case FETCH_DOG_SUCCESS :
          return {
             ...state,
-            currentDog: action.payload.currentDog
+            currentDog: action.payload.currentDog,
+            loading: false
          }
 
       default:

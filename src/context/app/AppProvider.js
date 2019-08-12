@@ -9,10 +9,12 @@ export default ({children}) =>{
    const [state, dispatch] = useReducer(AppReducer,
       {
          currentDog: null,
-         options: null
+         options: null,
+         loading: true
       }
    )
 
+   // We need to take this function out of useEffect, because it's async
    const fetchImages = async() =>{
       dispatch(fetchDogInit())
       const currentDog = await FetchData('images/search?limit=1')

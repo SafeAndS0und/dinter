@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Card from '../../components/Card/Card'
 import RoundBtn from '../../components/partials/RoundBtn/RoundBtn'
@@ -13,9 +12,11 @@ const Page = styled.div`
 `
 
 const BtnWrapper = styled.section`
+  position: fixed;
+  bottom: 25px;
+  left: 2.5%;
   width: 95%;
   display: grid;
-  margin: 120px auto 10px auto;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   
@@ -30,8 +31,9 @@ export default () =>{
    return (
       <Page className="App">
          <Navbar/>
-         <Card/>
-         {state.currentDog && state.currentDog.id}
+         {
+            state.loading || <Card dog={state.currentDog}/>
+         }
          <BtnWrapper>
             <RoundBtn bgColor="#FF79A8">A</RoundBtn>
             <RoundBtn className="middle">B</RoundBtn>

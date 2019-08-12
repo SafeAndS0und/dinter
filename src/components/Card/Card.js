@@ -27,7 +27,7 @@ const Name = styled.h3`
   color: #202020;
   font-size: 1.2em;
   font-weight: 700;
-  margin: 0;
+  margin: 3px 0;
 `
 
 const Breed = styled.small`
@@ -43,22 +43,29 @@ const About = styled.p`
   margin: 15px 0 2px 0;
 `
 
-export default props =>{
+export default ({dog}) =>{
 
    return (
       <Wrapper>
-         <Image
-            src="https://vignette.wikia.nocookie.net/youtube/images/1/18/DoggyDoggy.jpg/revision/latest?cb=20180714012154"/>
+         <Image src={dog.url}/>
          <Name>
             Benjamin, 3
          </Name>
 
          <Breed>
-            Bedlington Terrier
+            {
+               dog.breeds.length > 0
+               ? dog.breeds[0].name
+               : "I don't wanna talk about my breed..."
+            }
          </Breed>
 
          <About>
-            I lov loooong walks, green grass and nice hoomans!
+            {
+               dog.breeds.length > 0
+                  ? dog.breeds[0].temperament
+                  : "I'm just awesome. Love me."
+            }
          </About>
       </Wrapper>
    )
