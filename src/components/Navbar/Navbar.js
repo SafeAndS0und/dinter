@@ -31,7 +31,6 @@ const CogScaled = styled(FaCog)`
   position: fixed;
   top: 15px;
   left: 15px;
-  
 `
 
 export default props =>{

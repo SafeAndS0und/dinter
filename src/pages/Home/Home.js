@@ -5,6 +5,9 @@ import RoundBtn from '../../components/partials/RoundBtn/RoundBtn'
 import styled from 'styled-components'
 import {appContext} from "../../context/app/AppProvider"
 import {TiHeart, TiThumbsDown, TiThumbsUp} from 'react-icons/ti'
+import FetchData from "../../context/app/FetchData"
+import {fetchDogInit, fetchDogSuccess} from "../../context/app/AppActions"
+
 
 const Page = styled.div`
    max-width: 600px;
@@ -36,6 +39,12 @@ const BtnWrapper = styled.section`
 export default () =>{
    const {state, dispatch} = useContext(appContext)
 
+   const fetchNextDog = async () => {
+      dispatch(fetchDogInit())
+      const currentDog = await FetchData('images/search?limit=1')
+      dispatch(fetchDogSuccess(currentDog[0]))
+   }
+
    return (
       <Page className="App">
          <Navbar/>
@@ -43,13 +52,13 @@ export default () =>{
             state.loading || <Card dog={state.currentDog}/>
          }
          <BtnWrapper>
-            <RoundBtn bgColor="#FF5962">
+            <RoundBtn bgColor="#FF5962" fetchNextDog={fetchNextDog}>
                <TiThumbsDown/>
             </RoundBtn>
-            <RoundBtn className="middle">
+            <RoundBtn className="middle" fetchNextDog={fetchNextDog}>
                <TiHeart/>
             </RoundBtn>
-            <RoundBtn bgColor="#42FF78">
+            <RoundBtn bgColor="#42FF78" fetchNextDog={fetchNextDog}>
                <TiThumbsUp/>
             </RoundBtn>
          </BtnWrapper>

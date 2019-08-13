@@ -17,13 +17,17 @@ export default props =>{
        transform: scale(1.1);
      }
      
+     &:active, &:focus {
+       outline: none;
+       border: 0;
+     }
      svg {
       transform: scale(2.2)
      }
 `
 
    return (
-      <Btn className={props.className}>
+      <Btn className={props.className} onClick={props.fetchNextDog}>
          {props.children}
       </Btn>
    )

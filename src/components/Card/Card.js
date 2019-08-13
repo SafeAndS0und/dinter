@@ -6,7 +6,7 @@ const Wrapper = styled.div`
    display: block;
    margin: 15px auto;
    max-width: 93%;
-   box-shadow: 0 3px 5px 0 rgb(190,190,190);
+   box-shadow: 0 2px 6px 0 rgb(214,214,214);
    padding: 15px;
    border-radius: 10px;
    max-height: 80vh;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Image = styled.img`
    min-width: 70%;
    max-width: 95%;
-   max-height: 45vh;
+   max-height: 40vh;
    object-fit: cover;
    display: block;
    margin: 12px auto 16px auto;
@@ -72,10 +72,10 @@ export default ({dog}) =>{
                      <span>
                         I live about {dog.breeds[0].life_span}.
                         <br/>
-                        I'm mostly bred for {dog.breeds[0].bred_for.toLowerCase()}.
+                        {dog.breeds[0].bred_for && `I'm mostly bred for ${dog.breeds[0].bred_for.toLowerCase()}.`}
                         <br/>
                         <br/>
-                        I am {dog.breeds[0].temperament.toLowerCase()}.
+                        {dog.breeds[0].temperament && `I am ${dog.breeds[0].temperament.toLowerCase()}.`}
                      </span>
                   )
                   : "I'm just awesome. Love me."
