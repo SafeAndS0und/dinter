@@ -39,18 +39,28 @@ const BtnWrapper = styled.section`
 export default () =>{
    const {state, dispatch} = useContext(appContext)
 
-   const fetchNextDog = async () => {
+   const fetchNextDog = async() =>{
       dispatch(fetchDogInit())
       const currentDog = await FetchData('images/search?limit=1')
       dispatch(fetchDogSuccess(currentDog[0]))
    }
 
+   const dog = state.currentDog
+
    return (
       <Page className="App">
          <Navbar/>
-         {
-            state.loading || <Card dog={state.currentDog}/>
+
+         {state.loading || <Card
+            name={dog.breeds.length > 0 ? dog.breeds[0].name : null}
+            bred_for={dog.breeds.length > 0 && dog.breeds[0].bred_for}
+            url={dog.url}
+            life_span={(dog.breeds.length > 0 && dog.breeds[0].life_span) && dog.breeds[0].life_span}
+            temperament={(dog.breeds.length > 0 && dog.breeds[0].temperament) && dog.breeds[0].temperament}
+         />
+
          }
+
          <BtnWrapper>
             <RoundBtn bgColor="#FF5962" fetchNextDog={fetchNextDog}>
                <TiThumbsDown/>

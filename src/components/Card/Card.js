@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Image = styled.img`
    min-width: 70%;
    max-width: 95%;
-   max-height: 40vh;
+   max-height: 38vh;
    object-fit: cover;
    display: block;
    margin: 12px auto 16px auto;
@@ -41,11 +41,11 @@ const Breed = styled.small`
 const About = styled.p`
   font-weight: 300;
   color: #2f2f2f;
-  font-size: .9em;
+  font-size: .88em;
   margin: 15px 0 2px 0;
 `
 
-export default ({dog}) =>{
+export default ({name, bred_for, temperament, life_span, url}) =>{
 
    return (
       <Wrapper>
@@ -56,26 +56,23 @@ export default ({dog}) =>{
 
          <Breed>
             {
-               dog.breeds.length > 0
-                  ? dog.breeds[0].name
-                  : "Does my breed matter?"
+               name || "Does my breed matter?"
             }
          </Breed>
 
-         <Image src={dog.url}/>
+         <Image src={url}/>
 
          <About>
             {
-               dog.breeds.length > 0
-                  ?
-                  (
+               name
+                  ? (
                      <span>
-                        I live about {dog.breeds[0].life_span}.
+                        I live about {life_span}.
                         <br/>
-                        {dog.breeds[0].bred_for && `I'm mostly bred for ${dog.breeds[0].bred_for.toLowerCase()}.`}
+                        {bred_for && `I'm mostly bred for ${bred_for.toLowerCase()}.`}
                         <br/>
                         <br/>
-                        {dog.breeds[0].temperament && `I am ${dog.breeds[0].temperament.toLowerCase()}.`}
+                        {temperament && `I am ${temperament.toLowerCase()}.`}
                      </span>
                   )
                   : "I'm just awesome. Love me."
