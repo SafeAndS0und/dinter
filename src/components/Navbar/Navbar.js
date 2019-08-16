@@ -1,6 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { FaDog, FaCog} from "react-icons/fa";
+import {FaDog, FaCog} from "react-icons/fa"
+
+const ClearLink = styled(Link)`
+  text-decoration: none;
+`
 
 const Wrapper = styled.nav`
    position: fixed;
@@ -36,9 +41,17 @@ const CogScaled = styled(FaCog)`
 export default props =>{
    return (
       <Wrapper>
+
          <CogScaled/>
-         <Title>Dinter</Title>
-         <DogScaled/>
+
+         <ClearLink to='/'>
+            <Title>Dinter</Title>
+         </ClearLink>
+
+         <ClearLink to='/favorites'>
+            <DogScaled/>
+         </ClearLink>
+
       </Wrapper>
    )
 }

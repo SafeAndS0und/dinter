@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import MainLayout from '../../layouts/Main/Main'
 import Card from '../../components/Card/Card'
 import RoundBtn from '../../components/partials/RoundBtn/RoundBtn'
 import styled from 'styled-components'
@@ -8,13 +8,6 @@ import {TiHeart, TiThumbsDown, TiThumbsUp} from 'react-icons/ti'
 import FetchData from "../../context/app/FetchData"
 import {fetchDogInit, fetchDogSuccess} from "../../context/app/AppActions"
 
-
-const Page = styled.div`
-   max-width: 600px;
-   display: block;
-   margin: 70px auto 0 auto;
-   
-`
 
 const BtnWrapper = styled.section`
   max-width: 600px;
@@ -39,6 +32,14 @@ const BtnWrapper = styled.section`
 export default () =>{
    const {state, dispatch} = useContext(appContext)
 
+   const addToFavorites = () => {
+      const favoriteDogs = JSON.parse(localStorage.getItem('favoriteDogs')) || []
+      favoriteDogs.push(dog)
+      localStorage.setItem('favoriteDogs', JSON.stringify(favoriteDogs))
+
+      fetchNextDog()
+   }
+
    const fetchNextDog = async() =>{
       dispatch(fetchDogInit())
       const currentDog = await FetchData('images/search?limit=1')
@@ -48,9 +49,7 @@ export default () =>{
    const dog = state.currentDog
 
    return (
-      <Page className="App">
-         <Navbar/>
-
+      <MainLayout>
          {state.loading || <Card
             name={dog.breeds.length > 0 ? dog.breeds[0].name : null}
             bred_for={dog.breeds.length > 0 && dog.breeds[0].bred_for}
@@ -65,14 +64,14 @@ export default () =>{
             <RoundBtn bgColor="#FF5962" fetchNextDog={fetchNextDog}>
                <TiThumbsDown/>
             </RoundBtn>
-            <RoundBtn className="middle" fetchNextDog={fetchNextDog}>
+            <RoundBtn className="middle" fetchNextDog={addToFavorites}>
                <TiHeart/>
             </RoundBtn>
             <RoundBtn bgColor="#42FF78" fetchNextDog={fetchNextDog}>
                <TiThumbsUp/>
             </RoundBtn>
          </BtnWrapper>
-      </Page>
+      </MainLayout>
    )
 }
 
